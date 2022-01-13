@@ -1,0 +1,73 @@
+<head> </head>
+<body></body>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Wordle Solver</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #root {
+        width: 100%;
+        background-color: rgb(211, 211, 211);
+        padding: 2em;
+        max-width: 900px;
+      }
+      button {
+        padding: 1em;
+        background-color: cornflowerblue;
+        border-radius: 5px;
+        border: none;
+      }
+      .wordBox {
+        padding: 1em;
+        font-family: monospace, Arial, Helvetica, sans-serif;
+      }
+      @media screen and (max-width: 900px) {
+        #root {
+          max-width: 600px;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        #root {
+          max-width: 100%;
+          padding: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <h1 style="text-align: center">Wordle Solver</h1>
+      <button onclick="randWord()">Click for a random word!</button>
+      <div id="randWord" class="wordBox"></div>
+    </div>
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="words.js"></script>
+    <script>
+      let startWords = [];
+      words.forEach((word) => {
+        if (word) {
+          startWords.push(word);
+        }
+      });
+      const randWord = () => {
+        const word = words[Math.floor(Math.random() * (words.length + 1))];
+        document.getElementById("randWord").innerHTML = word.toUpperCase();
+      };
+    </script>
+  </body>
+</html>
