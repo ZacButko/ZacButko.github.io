@@ -1,0 +1,80 @@
+body {
+  display: flex;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#root {
+  width: 100%;
+  background-color: rgb(211, 211, 211);
+  padding: 2em;
+  max-width: 900px;
+}
+button {
+  padding: 1em;
+  background-color: cornflowerblue;
+  border-radius: 5px;
+  border: none;
+  text-transform: uppercase;
+  font-size: medium;
+}
+.wordBox {
+  padding: 1em;
+  font-family: monospace, Arial, Helvetica, sans-serif;
+}
+/* .wordContainer {
+    display: 'flex'
+  } */
+.wordRow {
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+}
+.letter {
+  background-color: white;
+  font-size: 30px;
+  font-family: monospace, Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  user-select: none;
+}
+.notFound {
+  background-color: white;
+}
+.partial {
+  background-color: burlywood;
+}
+.correct {
+  background-color: greenyellow;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                              supported by Chrome, Edge, Opera and Firefox */
+}
+.actions {
+  display: flex;
+  column-gap: 2em;
+  padding: 1em;
+}
+.solutions {
+  overflow-wrap: break-word;
+}
+@media screen and (max-width: 900px) {
+  #root {
+    max-width: 600px;
+  }
+}
+@media screen and (max-width: 600px) {
+  #root {
+    max-width: 100%;
+    padding: 1em;
+  }
+}
