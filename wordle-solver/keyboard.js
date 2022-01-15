@@ -29,7 +29,7 @@ const updateKeyboard = (s) => {
       // for each character, set it to the state we know.
       // all states should be mutually exclusive
       el = document.getElementById(`keyboard-letter-${char}`);
-      if (wrongSpot.includes(char)) {
+      if (Object.keys(wrongSpot)?.includes(char)) {
         el.classList.remove("unknown", "correct", "excluded");
         el.classList.add("partial");
       } else if (solution.includes(char)) {
