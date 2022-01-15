@@ -8,8 +8,7 @@ body {
   background-color: rgb(211, 211, 211);
   padding: 2em;
   max-width: 900px;
-  display: flex;
-  flex-direction: column;
+  overflow: auto;
 }
 button {
   padding: 1em;
@@ -55,21 +54,25 @@ button {
                               supported by Chrome, Edge, Opera and Firefox */
 }
 .actions {
-  display: flex;
-  column-gap: 2em;
   padding: 1em;
 }
 .solutions {
   overflow-wrap: break-word;
   padding: 1em;
 }
+.suggestBox {
+  display: flex;
+  column-gap: 1em;
+  row-gap: 1em;
+}
 .reset {
   padding: 1em;
 }
 .keyboard {
   display: flex;
-  flex-direction: column;
   row-gap: 4px;
+  flex-direction: column;
+  min-width: 500px;
 }
 .keyboard-row {
   display: flex;
@@ -100,8 +103,31 @@ button {
   }
 }
 @media screen and (max-width: 600px) {
+  button {
+    font-size: small;
+  }
   #root {
     max-width: 100%;
     padding: 1em;
+  }
+  .wordRow {
+    padding: 0.5em 0em;
+  }
+  .actions {
+    padding: 0em;
+  }
+  .solutions {
+    padding: 0.5em 0em;
+  }
+  .reset {
+    padding: 0em;
+  }
+  .keyboard {
+    min-width: auto;
+    padding: 0.5em 0em;
+  }
+  .keyboard-letter {
+    font-size: medium;
+    padding: 0.5em;
   }
 }
