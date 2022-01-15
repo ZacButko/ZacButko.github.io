@@ -1,3 +1,5 @@
+// Source: http://www.poslarchive.com/math/scrabble/lists/common-5.html
+
 const words = [
   "aahed",
   "aalii",
