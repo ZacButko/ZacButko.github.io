@@ -97,6 +97,12 @@ button {
 .excluded {
   background-color: rgb(94, 94, 94);
 }
+.error {
+  color: red;
+}
+.hidden {
+  display: none;
+}
 @media screen and (max-width: 900px) {
   #root {
     max-width: 600px;

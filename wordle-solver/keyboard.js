@@ -20,14 +20,19 @@ const makeKeyboard = () => {
   });
 };
 
-const updateKeyboard = () => {
+const updateKeyboard = (s) => {
+  const {
+    letterStates: { excludedLetters, wrongSpot, solution },
+  } = s;
   rows.forEach((row) => {
     row.forEach((char) => {
+      // for each character, set it to the state we know.
+      // all states should be mutually exclusive
       el = document.getElementById(`keyboard-letter-${char}`);
       if (wrongSpot.includes(char)) {
         el.classList.remove("unknown", "correct", "excluded");
         el.classList.add("partial");
-      } else if (rightSpot.includes(char)) {
+      } else if (solution.includes(char)) {
         el.classList.remove("unknown", "partial", "excluded");
         el.classList.add("correct");
       } else if (excludedLetters.includes(char)) {
