@@ -9,6 +9,9 @@ body {
   padding: 2em;
   max-width: 900px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2em;
 }
 button {
   padding: 1em;
@@ -18,10 +21,20 @@ button {
   text-transform: uppercase;
   font-size: medium;
 }
+h4 {
+  margin: 0;
+}
+.boardArea {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  column-gap: 1em;
+  row-gap: 1em;
+}
 .wordRow {
   padding: 1em;
   display: flex;
   align-items: center;
+  justify-content: center;
   column-gap: 1em;
 }
 .letter {
@@ -35,38 +48,31 @@ button {
   line-height: 2em;
   user-select: none;
 }
-.notFound {
-  background-color: white;
-}
-.partial {
-  background-color: burlywood;
-}
-.correct {
-  background-color: greenyellow;
-}
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                              supported by Chrome, Edge, Opera and Firefox */
-}
 .actions {
+  border: 1px solid rgb(94, 94, 94);
   padding: 1em;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
 }
-.solutions {
-  overflow-wrap: break-word;
+.finalizeButton {
+  margin: 0 auto;
+  display: block;
+}
+.generatorButton {
+  font-size: small;
+  background-color: rgb(154, 218, 255);
+  border: 2px solid rgb(89, 194, 255);
+  width: 10em;
+  height: 5em;
+}
+.reset {
   padding: 1em;
 }
 .suggestBox {
   display: flex;
   column-gap: 1em;
   row-gap: 1em;
-}
-.reset {
-  padding: 1em;
 }
 .keyboard {
   display: flex;
@@ -85,6 +91,9 @@ button {
   text-transform: uppercase;
   padding: 1em 1em;
 }
+.notFound {
+  background-color: white;
+}
 .unknown {
   background-color: rgb(177, 177, 177);
 }
@@ -99,13 +108,19 @@ button {
 }
 .error {
   color: red;
+  padding: 1em;
 }
 .hidden {
   display: none;
 }
+/* .solutionsList {
+  text-transform: uppercase;
+} */
 @media screen and (max-width: 900px) {
   #root {
     max-width: 600px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
   }
 }
 @media screen and (max-width: 600px) {

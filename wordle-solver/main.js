@@ -91,16 +91,23 @@ const updateUI = (s) => {
     s?.letterStates?.excludedLetters?.length ||
     Object.keys(s?.letterStates?.wrongSpot)?.length ||
     s?.letterStates?.rightSpot?.length;
-  const nSolutions = s?.wordList?.length;
-  document.getElementById("nSolutions").innerHTML = showStats
-    ? `Number of possible solutions: ${nSolutions}`
-    : "";
-  document.getElementById("solutionsList").innerHTML = showStats
-    ? `Possible solutions: ${s?.wordList.slice(
-        0,
-        Math.min(50, s?.wordList?.length + 1)
-      )}`
-    : "";
+  if (showStats) {
+    document.getElementById("solutions").classList.remove("hidden");
+    const nSolutions = s?.wordList?.length;
+    var wList = s?.wordList
+      .slice(0, Math.min(50, s?.wordList?.length + 1))
+      .map((word) => [...word].map((char) => char.toUpperCase()).join(""));
+    if (50 < s.wordList.length + 1) wList.push("...");
+    document.getElementById(
+      "nSolutions"
+    ).innerHTML = `Number of possible solutions: ${nSolutions}`;
+    document.getElementById(
+      "solutionsList"
+    ).innerHTML = `Possible solutions: ${wList.join(", ")}`;
+  } else {
+    document.getElementById("solutions").classList.add("hidden");
+  }
+
   // handle error display
   el = document.getElementById("error");
   if (s.error) {
