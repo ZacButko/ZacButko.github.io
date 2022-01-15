@@ -8,6 +8,7 @@ body {
   background-color: rgb(211, 211, 211);
   padding: 2em;
   max-width: 900px;
+  height: auto;
 }
 button {
   padding: 1em;
@@ -66,6 +67,34 @@ button {
 }
 .solutions {
   overflow-wrap: break-word;
+}
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+.keyboard-row {
+  display: flex;
+  column-gap: 4px;
+  justify-content: center;
+}
+.keyboard-letter {
+  font-family: monospace, Arial, Helvetica, sans-serif;
+  font-size: large;
+  text-transform: uppercase;
+  padding: 1em 1em;
+}
+.unknown {
+  background-color: rgb(177, 177, 177);
+}
+.partial {
+  background-color: rgb(245, 223, 99);
+}
+.correct {
+  background-color: rgb(87, 204, 77);
+}
+.excluded {
+  background-color: rgb(94, 94, 94);
 }
 @media screen and (max-width: 900px) {
   #root {

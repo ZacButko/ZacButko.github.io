@@ -37,6 +37,8 @@ var includedLetters = defaultIncludedLetters;
 var mustLetters = [];
 var solution = [null, null, null, null, null];
 var solutionList = words;
+var wrongSpot = [];
+var rightSpot = [];
 
 const makeNewRow = (index) => {
   currentRow = Number.isInteger(index) ? index : currentRow + 1;
@@ -80,6 +82,8 @@ const reset = () => {
   excludedLetters = [];
   includedLetters = defaultIncludedLetters;
   mustLetters = [];
+  wrongSpot = [];
+  rightSpot = [];
   solution = [null, null, null, null, null];
   solutionList = words;
   makeNewRow(0);
@@ -200,7 +204,14 @@ const submitStatus = () => {
         }
         if (status === 2) {
           solution[i] = letter;
+          if (!rightSpot.includes(letter)) {
+            rightSpot.push(letter);
+            wrongSpot = wrongSpot.filter((item) => item != letter);
+          }
         } else {
+          if (!wrongSpot.includes(letter) && !rightSpot.includes(letter)) {
+            wrongSpot.push(letter);
+          }
           win = false;
         }
       }
@@ -216,6 +227,7 @@ const submitStatus = () => {
         excludedLetters,
         solutionList.slice(0, Math.min(50, solutionList.length))
       );
+      updateKeyboard();
       currentWord = "";
       letterStatus = [...initialLetterStatus];
     }
@@ -224,18 +236,39 @@ const submitStatus = () => {
 
 reset();
 
-document.onkeydown = (e) => {
-  // magic
-  if (currentWord.length < 5) {
-    if (e.keyCode >= 65 && e.keyCode <= 90) {
-      currentWord += e.key.toLowerCase();
-    } else if (e.keyCode >= 97 && e.keyCode <= 122) {
-      currentWord += e.key;
+const input = (char) => {
+  if (char) {
+    if (char === "back") {
+      // only use back if current word isn't empty
+      if (currentWord.length) {
+        currentWord = currentWord.slice(0, currentWord.length - 1);
+        hydrateWord();
+        resetLetterStatus();
+      }
+    } else if (char === "enter") {
+      // only allow submit if current word is length 5
+      if (currentWord.length === 5) {
+        submitStatus();
+      }
+    } else if (currentWord.length < 5) {
+      // relying on inputs to input() to sanitize chars for us
+      currentWord += char;
+      hydrateWord();
+      resetLetterStatus();
     }
   }
-  if (e.keyCode === 8 && currentWord.length) {
-    currentWord = currentWord.slice(0, currentWord.length - 1);
+};
+
+document.onkeydown = (e) => {
+  // magic
+  var char = "";
+  if (/^([a-zA-Z])/.test(e.key) && e.key.length === 1) {
+    // single a-z or A-Z character
+    char = e.key.toLowerCase();
+  } else if (e.key === "Backspace") {
+    char = "back";
+  } else if (e.key === "Enter") {
+    char = "enter";
   }
-  hydrateWord();
-  resetLetterStatus();
+  input(char);
 };
