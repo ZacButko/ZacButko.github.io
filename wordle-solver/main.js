@@ -56,15 +56,9 @@ const makeNewRow = (index) => {
 
 const updateStats = (nSolutions, included, excluded, possible) => {
   document.getElementById("nSolutions").innerHTML = Number.isInteger(nSolutions)
-    ? `Possible solutions: ${nSolutions}`
+    ? `Number of possible solutions: ${nSolutions}`
     : "";
-  document.getElementById("includedLetters").innerHTML = included
-    ? `Included Letters: ${included}`
-    : "";
-  document.getElementById("excludedLetters").innerHTML = excluded
-    ? `Excluded Letters: ${excluded}`
-    : "";
-  document.getElementById("solutions").innerHTML = possible
+  document.getElementById("solutionsList").innerHTML = possible
     ? `Possible solutions: ${possible}`
     : "";
 };
@@ -88,6 +82,7 @@ const reset = () => {
   solutionList = words;
   makeNewRow(0);
   updateStats(null, null, null, null);
+  updateKeyboard();
 };
 
 const randWord = (wordList) => {
@@ -234,8 +229,6 @@ const submitStatus = () => {
   }
 };
 
-reset();
-
 const input = (char) => {
   if (char) {
     if (char === "back") {
@@ -272,3 +265,5 @@ document.onkeydown = (e) => {
   }
   input(char);
 };
+
+reset();

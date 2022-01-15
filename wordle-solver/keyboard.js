@@ -35,7 +35,7 @@ const updateKeyboard = () => {
         el.classList.add("excluded");
       } else {
         el.classList.remove("partial", "correct", "excluded");
-        el.classList.add("uknown");
+        el.classList.add("unknown");
       }
     });
   });

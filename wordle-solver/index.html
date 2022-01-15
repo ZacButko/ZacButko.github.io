@@ -14,7 +14,7 @@
       <div class="wordContainer" id="wordContainer"></div>
       <div class="actions">
         <div class="suggestBox">
-          <button onclick="newSuggestion()">Pick a new word</button>
+          <button onclick="newSuggestion()">new guess</button>
           <button onclick="eliminatePossibilities()">Eliminate</button>
         </div>
         <div class="submitBox">
@@ -22,10 +22,8 @@
         </div>
       </div>
       <div class="solutions">
-        <div id="includedLetters"></div>
-        <div id="excludedLetters"></div>
         <div id="nSolutions"></div>
-        <div id="solutions"></div>
+        <div id="solutionsList"></div>
       </div>
       <div class="reset">
         <button onclick="reset()">reset</button>
@@ -33,7 +31,7 @@
       <div class="keyboard" id="keyboard"></div>
     </div>
     <script src="words.js"></script>
-    <script src="main.js"></script>
     <script src="keyboard.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
