@@ -9,16 +9,20 @@ const getNewSuggestion = (s) => {
 };
 
 const getEliminateSuggestion = (s) => {
-  // algo to find a word which eliminates the most number of uknown letters
+  // algo to find a word which eliminates the most number of unknown letters
   let lettersToExclude = [];
   s?.wordList?.forEach((word) => {
     [...word].forEach((char) => {
+      // look through each character
       if (
+        // letter isn't already excluded
         !s?.letterStates?.excludedLetters?.includes(char) &&
+        // letter isn't already known (wrong spot or in solution)
         !(
-          s?.letterStates?.wrongSpot.includes(char) ||
-          s?.letterStates?.rightSpot
+          Object.keys(s?.letterStates?.wrongSpot)?.includes(char) ||
+          s?.letterStates?.solution.includes(char)
         ) &&
+        // not already on our next-to-exclude list
         !lettersToExclude.includes(char)
       ) {
         lettersToExclude.push(char);

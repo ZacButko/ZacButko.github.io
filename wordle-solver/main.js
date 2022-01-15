@@ -34,7 +34,7 @@ const initialState = {
   letterStates: {
     excludedLetters: [],
     possibleLetters: [...defaultpossibleLetters],
-    wrongSpot: [],
+    wrongSpot: {},
     solution: [null, null, null, null, null],
   },
   // wordList will be the most up-to-date list of possible words, matching all provided patterns
@@ -89,7 +89,7 @@ const updateUI = (s) => {
   // dont show any stats if no progress has been made (no guesses, either excluce or correct)
   const showStats =
     s?.letterStates?.excludedLetters?.length ||
-    s?.letterStates?.wrongSpot?.length ||
+    Object.keys(s?.letterStates?.wrongSpot)?.length ||
     s?.letterStates?.rightSpot?.length;
   const nSolutions = s?.wordList?.length;
   document.getElementById("nSolutions").innerHTML = showStats
@@ -144,11 +144,20 @@ const updateWordList = (wordList, excludedLetters, solution, wrongSpot) => {
       }
     });
     // has to also include all wrong spot characters
-    wrongSpot.forEach((char) => {
+    Object.keys(wrongSpot).forEach((char) => {
       if (!word.includes(char)) {
         // if there exists a character that must be in the word but is not in this word, fail
         pass = false;
       }
+      // cannot be a word where we already know the letter is in the wrong spot
+      // all the indicies that are wrong for this letter
+      const indicies = wrongSpot[char];
+      indicies.forEach((index) => {
+        if (word[index] === char) {
+          // word has this character at this index, fail
+          pass = false;
+        }
+      });
     });
     if (pass) {
       newList.push(word);
@@ -178,7 +187,10 @@ const checkSubmission = (s) => {
       if (status === 0) {
         // letter not correct
         win = false;
-        if (solution.includes(letter) || wrongSpot.includes(letter)) {
+        if (
+          solution.includes(letter) ||
+          Object.keys(wrongSpot).includes(letter)
+        ) {
           // we were told previously that this letter is correct, now saying not found
           error = `${letter} marked as incorrect, but was previously indicated to be in the word`;
         } else if (!excludedLetters.includes(letter)) {
@@ -198,13 +210,14 @@ const checkSubmission = (s) => {
             error = `${solution[i]} was previously said to be at position ${i} in word, now saying ${letter}`;
           }
           solution[i] = letter;
-          // take this letter out of wrong spot if it was there previously
-          wrongSpot = wrongSpot.filter((item) => item != letter);
         } else {
           // correct letter in wrong spot
-          if (!wrongSpot.includes(letter)) {
+          if (!wrongSpot[letter]) {
             // if we don't know about this letter yet, add it to wrongSpot list
-            wrongSpot.push(letter);
+            wrongSpot[letter] = [i];
+          } else if (!wrongSpot[letter].includes(i)) {
+            // we know the letter but found a new spot it doesn't belong
+            wrongSpot[letter].push(i);
           }
           win = false;
         }
