@@ -262,17 +262,23 @@ const submitStatus = () => {
   const { win, error } = newState;
   if (Object.keys(newState).length === 0) {
     // checkSubmission didn't run becuase state wasn't valid to run
+    gtag("event", "finalize", { event_label: "pass" });
     console.debug("nothing was done");
   } else if (error) {
     // if error, show error, but don't do anything else
+    gtag("event", "finalize", { event_label: "error" });
     state.error = error;
     updateUI(state);
   } else if (win) {
     // if win, show win, don't do anything else
+    gtag("event", "finalize", { event_label: "win", value: state?.currentRow });
     document.getElementById("solutions").innerHTML = `Congratulations!!`;
   } else {
     // state checks out
-
+    gtag("event", "finalize", {
+      event_label: "continue",
+      value: state?.currentRow,
+    });
     // 3. reset most of state, but keep the results we just found
     state = { ...initialState, ...newState, currentRow: state.currentRow };
     // 2. make a new row (this bumps state.currentRow)

@@ -51,7 +51,11 @@ const getEliminateSuggestion = (s) => {
 };
 
 const useGenerator = (gName) => {
-  // uses a generator to pick a new word, then updates state with that word, then updates UI
+  // uses a generator to pick a new word, then pdates state with that word, then updates UI
+  gtag("event", "useGenerator", {
+    event_label: gName,
+    value: state?.currentRow,
+  });
   var newWord = "";
   if (gName === "new") {
     newWord = getNewSuggestion(state);
