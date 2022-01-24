@@ -6,11 +6,29 @@
     <meta charset="utf-8" />
     <title>Wordle Solver</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css?version=1.6" />
+    <link rel="stylesheet" href="styles.css?version=1.8" />
   </head>
   <body>
     <div id="root">
       <h1 style="text-align: center">Wordle Solver</h1>
+      <div id="description">
+        <p>
+          A wordle solving app. Enter the words you guess from
+          <a href="https://www.powerlanguage.co.uk/wordle/">Wordle</a>, or one
+          of its adversarial twins
+          <a href="https://swag.github.io/evil-wordle/">Evil Wordle</a> or
+          <a href="https://qntm.org/files/wordle/">Absurdle</a>. After entering
+          the word here, click each letter to change its color to white, yellow,
+          or green. Once the word and colors match the game you're playing,
+          click 'Finalize' to have wordle-solver determine what remaining words
+          could be the solution.
+        </p>
+        <p>
+          Additionally, we have different algorithms avaialble in the
+          Suggestions box to help you choose a next guess. Each one uses a
+          different strategy. Mix and match to fit your play style!
+        </p>
+      </div>
       <div class="boardArea">
         <div>
           <div class="wordContainer" id="wordContainer"></div>
@@ -51,6 +69,27 @@
       <div class="keyboard" id="keyboard"></div>
       <div class="reset">
         <button onclick="reset()" class="finalizeButton">reset</button>
+      </div>
+      <div class="the-lab">
+        <h5>The Lab</h5>
+        <p>
+          New strategy in progress by
+          <a href="https://github.com/Jollyhrothgar">Mike Beaumier</a>:
+          <a
+            href="https://colab.research.google.com/drive/1PRwVHi9vg-MD66oQ0sFqcqV5vokVyzYL#scrollTo=T2FnMIYIRx0u"
+            >First Guess Optimizer</a
+          >
+        </p>
+      </div>
+      <div class="footer">
+        <p>
+          Created by <a href="https://github.com/zacbutko">Zac Butko</a>. Code /
+          strategy / UI contributions
+          <a
+            href="https://github.com/ZacButko/ZacButko.github.io/tree/main/wordle-solver"
+            >welcome.</a
+          >
+        </p>
       </div>
     </div>
     <script src="words.js"></script>

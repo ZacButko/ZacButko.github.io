@@ -1,17 +1,17 @@
 body {
-  display: flex;
   justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
+  overflow: auto;
 }
 #root {
   width: 100%;
   background-color: rgb(211, 211, 211);
   padding: 2em;
   max-width: 900px;
-  overflow: auto;
   display: flex;
   flex-direction: column;
   row-gap: 2em;
+  margin: auto;
 }
 button {
   padding: 1em;
@@ -113,10 +113,13 @@ h4 {
 .hidden {
   display: none;
 }
+.footer {
+  text-align: center;
+}
 /* .solutionsList {
   text-transform: uppercase;
 } */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 980px) {
   #root {
     max-width: 600px;
     grid-template-columns: 1fr;
