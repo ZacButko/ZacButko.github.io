@@ -1,5 +1,7 @@
 # Wordle Solver
 
+https://zacbutko.github.io/wordle-solver/ 
+
 Hi there! I created this wordle solver to combat the rise wordle games. It gives you ideas for when you just can't think of a possible solution, and gives some strategy by helping to eliminate letters left in possible solutions.
 
 ## Currenty strategies:
